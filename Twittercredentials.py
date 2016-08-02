@@ -8,7 +8,7 @@ consumer_secret = "hG40gnkOlgWXWIfbMGICXfqRc5eKgxOGHxhIx303nbmBcAoAod";
 access_token = "301198479-qXyHfBpibtBuoSekwDb3cu9Wt5JJxHqbfedCg4mc";
 #eg: access_token = "YisfFjiodKtojtUvW4MSEcPmYisfFjiodKtojtUvW4MSEcPmYisfFjiodKtojtUvW4MSEcPm";
 
-access_token_secret = "	Gpmt6rg7CziT0uO3uLOWmvYz5Jt7B16PbDsoBo7nbl3j4";
+access_token_secret = "Gpmt6rg7CziT0uO3uLOWmvYz5Jt7B16PbDsoBo7nbl3j4";
 #eg: access_token_secret = "YisfFjiodKtojtUvW4MSEcPmYisfFjiodKtojtUvW4MSEcPmYisfFjiodKtojtUvW4MSEcPm";
 
 
