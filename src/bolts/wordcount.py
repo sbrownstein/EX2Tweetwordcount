@@ -27,3 +27,37 @@ class WordCounter(Bolt):
 
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
+
+import psycopg2
+
+conn = psycopg2.connect(database="Tcount", user="w205", password="", host="localhost", port="5432")
+
+try:
+    cur = conn.cursor()
+    cur.execute("CREATE DATABASE Tcount")
+    cur.close()
+    conn.close()
+except:
+    print "Could not create Tcount"​
+
+cur = conn.cursor()
+cur.execute('''CREATE TABLE Tweetwordcount
+       (word TEXT PRIMARY KEY     NOT NULL,
+       count INT     NOT NULL);''')
+conn.commit()
+conn.close()
+
+cur = conn.cursor()
+
+cur.execute("INSERT INTO Tweetwordcount (word,count) \
+      VALUES ('test', 1)");
+conn.commit()
+
+cur.execute("SELECT word, count from Tweetwordcount")
+records = cur.fetchall()
+for rec in records:
+   print "word = ", rec[0]
+   print "count = ", rec[1], "\n"
+conn.commit()
+
+conn.close()
