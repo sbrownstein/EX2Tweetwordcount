@@ -17,7 +17,7 @@
           options
           {"tweet-spout" :shuffle}
           "bolts.parse.ParseTweet"
-          ["word"]
+          ["valid-words"]
           :p 3
           )
      "count-bolt" (python-bolt-spec
