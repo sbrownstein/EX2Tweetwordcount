@@ -5,7 +5,7 @@ from streamparse.bolt import Bolt
 
 import psycopg2
 
-conn = psycopg2.connect(database="tcount", user="w205", password="", host="localhost", port="5432")
+conn = psycopg2.connect(database="Tcount", user="w205", password="", host="localhost", port="5432")
 
 class WordCounter(Bolt):
 
@@ -28,13 +28,33 @@ class WordCounter(Bolt):
 
         # Log the count - just to see the topology running
         self.log('%s: %d' % (word, self.counts[word]))
-
-        #check to see if word already exists in database
-        cur.execute
-
-	#if yes, update word count
-
-	#else, insert word and count
-        cur.execute("INSERT INTO tweetwordcount (word,count) \
-              VALUES ([word],self.counts[word])");
+      
+        # From psycopg-sample, create db
+        try:
+             cur = conn.cursor()
+             cur.execute("CREATE DATABASE Tcount")
+             cur.close()
+             conn.commit()
+             conn.close()
+        except:
+             print "Could not create Tcount"​
+ 
+        # From psycopg-sample, create cursor and table
+        cur = conn.cursor()
+        cur.execute('''CREATE TABLE Tweetwordcount
+             (word TEXT PRIMARY KEY     NOT NULL,
+             count INT     NOT NULL);''')
         conn.commit()
+        
+        # If word is new, insert word and count
+        # Else, update table with new count
+        if self.counts[word] == 1:
+             cur.execute("INSERT INTO Tweetwordcount (word, count) \
+                   VALUES (%s, 1)", (word))
+        else: cur.execute("UPDATE Tweetwordcount SET count=%s WHERE word=%s", (word, self.counts[word])
+
+        conn.commit()
+
+        conn.close()
+
+
