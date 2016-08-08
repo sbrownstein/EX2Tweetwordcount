@@ -15,7 +15,7 @@ Step 1. Clear existing table contents
 
 Step 2. Run the EX2Tweetwordcount project
 
-     a. cd EX2Tweetwordcount/
+     a. cd Ex2/
      b. sparse run
      c. Cancel application after allowing it to run for desired amount of time. CTRL+C
 
